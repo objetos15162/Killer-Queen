@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=KillerQueen
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ KillerQueen\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=KillerQueen()
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ Se\ manda\ llamar\ a\ run(),\ donde\ se\ simula\ el\ movimiento\ de\ Killer\ Queen.\r\n\ Se\ encarga\ de\ verificar\ cuando\ un\ enemigo\ ataca\ a\ Killer\ Queen,\ y\ por\ lo\ tanto\ actualiza\ las\ vidas,\ las\ cuales\ son\ dibujadas\ en\ el\ mundo,\ cuando\ se\ manda\ llamar\ \r\n\ al\ m\u00E9todo\ DrawLifes().\r\n\ El\ boleano\ attacked\ se\ inicializa\ en\ falso.\ Este\ nos\ ayuda\ a\ dar\ un\ tiempo\ de\ recuperaci\u00F3n\ a\ Killer\ Queen\ cuando\ es\ atacada,\ para\ que\ durante\ ese\ peque\u00F1o\ lapso\ de\r\n\ tiempo\ los\ enemigos\ no\ puedan\ atacarla.\ \r\n
+comment3.params=
+comment3.target=void\ run()
+comment3.text=\r\n\ Este\ m\u00E9todo\ se\ encarga\ de\ asignar\ las\ im\u00E1genes\ a\ Killer\ Queen\ para\ simular\ el\ movimiento\ del\ jugador\ corriendo.\r\n\ Se\ utiliza\ la\ clase\ SimpleTimer,\ cada\ que\ pasan\ 200\ milisegundos,\ hay\ un\ condicional\ verifica\ que\ la\ imagen\ actual\ del\ objeto\ sea\ igual\ a\ la\ imagen\ de\ la\ lista\ \r\n\ de\ im\u00E1genes\ declarada\ en\ el\ constructor,\ iniciando\ en\ el\ \u00EDndice\ 0.\ Si\ es\ verdadero\ entonces\ actualiza\ la\ imagen\ del\ \u00EDndice\ siguiente\ y\ asi\ sucesivamente\ hasta\ llegar\ \r\n\ al\ \u00EDndice\ 8,\ que\ es\ el\ n\u00FAmero\ total\ de\ la\ lista,\ y\ posteriormente\ comienza\ en\ el\ \u00EDndice\ 1\ y\ se\ inicia\ el\ timer\ nuevamente.\ Esto\ se\ repite\ siempre.\r\n
+comment4.params=
+comment4.target=void\ jumpImages()
+comment5.params=
+comment5.target=void\ jump()
+comment6.params=
+comment6.target=int\ getTrappedCoins()
+comment6.text=\r\n\ M\u00E9todo\ de\ acceso\ a\ las\ monedas\ atrapadas.\r\n\ @return\ trappedCoins\ El\ n\u00FAmero\ total\ de\ monedas\ atrapadas.\r\n
+numComments=7

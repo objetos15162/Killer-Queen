@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Scrolleable
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Scrolleable\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Scrolleable\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment2.params=
+comment2.target=void\ scrollObjects()
+comment3.params=actor
+comment3.target=void\ remove(greenfoot.Actor)
+comment4.params=actor
+comment4.target=void\ removeGround(greenfoot.Actor)
+numComments=5
