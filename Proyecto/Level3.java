@@ -43,13 +43,13 @@ public class Level3 extends Levels
             timerWin.mark();
         }
         
-      if(Greenfoot.getRandomNumber(650) == 3)
+      if(Greenfoot.getRandomNumber(200) == 10)
        //if(timerSkel.millisElapsed() > Greenfoot.getRandomNumber(10000)+5000)
        {
            addVampire();
            timerVampire.mark();
        }
-       
+       genGround();
        levelComplete();
        updateTime();
        randomCoins();
@@ -57,14 +57,14 @@ public class Level3 extends Levels
     
     private void addVampire()
     {
-        addObject(new Vampires(),getWidth(),yGround - 84);
+        addObject(new Vampires(),getWidth(),yGround - 86);
     }
     
     public void levelComplete()
     {
-        Level4 level4 = new Level4();
-        if(timerDisplay.getValue() >= 30)
+       if(timerDisplay.getValue() >= 20)
         {
+            Level4 level4 = new Level4();
             Greenfoot.setWorld(level4);
             timerWin.mark();
         }  

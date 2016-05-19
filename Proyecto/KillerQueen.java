@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Write a description of class KillerQueen here.
@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public class KillerQueen extends Actor
 {
     private ArrayList<GreenfootImage> imgRunning; //Lista de imágenes que simulan movimiento de Killer 
-    private SimpleTimer timerImagesRun; // Timer que actualiza las imágenes de Killer Queen
+    private ArrayList<GreenfootImage> imgDying;
+    private SimpleTimer timerImages; // Timer que actualiza las imágenes de Killer Queen
     private int lifes; //Vidas de Kiler Queen
     private boolean attacked; // Verifica si Killer Queen es atacada
     private boolean jumping;
@@ -21,18 +22,19 @@ public class KillerQueen extends Actor
     private ArrayList<GreenfootImage> imgJumping;//Arreglo de imágenes que simula salto.
     private SimpleTimer timerJumped;
     private int jumpingTime;
-    
+    private boolean died;
     public KillerQueen()
     {
         jumpingTime = 600;
-        timerImagesRun = new SimpleTimer();
-        timerImagesRun.mark();
+        timerImages = new SimpleTimer();
+        timerImages.mark();
         timerAttacked = new SimpleTimer();
         lifes = 5;
         jumping = false;
         trappedCoins = 0;
         counterCoin = new Counter();
         attacked= false;
+        died = false;
         timerJumped = new SimpleTimer();
         timerJumped.mark();
         //Se crea un ArrayList, y se recorre con un ciclo for para ir dando un nombre a cada imagen y posteriormente se va agregando cada elemento a la lista.
@@ -50,6 +52,14 @@ public class KillerQueen extends Actor
         {
             img = "jump" + i + ".png";
             imgJumping.add(new GreenfootImage(img));
+        }
+        
+        imgDying = new ArrayList();
+        img = "";
+        for(int i = 0; i<9; i++)
+        {
+            img = "dead" + i + ".png";
+            imgDying.add(new GreenfootImage(img));
         }
         
         //Primer imagen de la lista que se asigna a Killer Queen.
@@ -76,7 +86,6 @@ public class KillerQueen extends Actor
                  timerJumped.mark();
             }
         }
-        
         jump();
         if( jumping == true)
         {  
@@ -86,10 +95,11 @@ public class KillerQueen extends Actor
         {
             run();
         }
+    
         
         if(attacked == false)
         {
-            if(isTouching(Skeleton.class))
+            if(isTouching(Skeleton.class) && getWorld().getClass() == Level1.class)
             {
                 lifes -= 1;
                 ((Level1)getWorld()).DrawLifes(lifes); 
@@ -97,17 +107,27 @@ public class KillerQueen extends Actor
                 timerAttacked.mark();
                 
             }
-            if(isTouching(Zombie.class))
+            
+            if(isTouching(Zombie.class) && getWorld().getClass() == Level2.class)
             {
                 lifes -= 1;
                 ((Level2)getWorld()).DrawLifes(lifes);
                 attacked = true;
                 timerAttacked.mark();
             }
+            
             if(isTouching(Vampires.class))
             {
                 lifes -= 1;
                 ((Level3)getWorld()).DrawLifes(lifes);
+                attacked = true;
+                timerAttacked.mark();
+            }
+            
+            if((isTouching(Zombie.class) || isTouching(Skeleton.class)) && getWorld().getClass() == Level4.class)
+            {
+                lifes -= 1;
+                ((Level4)getWorld()).DrawLifes(lifes);
                 attacked = true;
                 timerAttacked.mark();
             }
@@ -140,7 +160,7 @@ public class KillerQueen extends Actor
      */
     public void run()
     {
-       if(timerImagesRun.millisElapsed() > 200)
+       if(timerImages.millisElapsed() > 200)
         {
           for (GreenfootImage img : imgJumping)
             if(this.getImage() == img)
@@ -164,13 +184,13 @@ public class KillerQueen extends Actor
                this.setImage(imgRunning.get(8));
           else if (this.getImage() == imgRunning.get(8))
                this.setImage(imgRunning.get(1));
-          timerImagesRun.mark();
+          timerImages.mark();
         }
     }
     
     private void jumpImages()
     {
-        if(timerImagesRun.millisElapsed() > 200)
+        if(timerImages.millisElapsed() > 200)
         {
           for (GreenfootImage img : imgRunning)
             if(this.getImage() == img)
@@ -194,10 +214,39 @@ public class KillerQueen extends Actor
                this.setImage(imgJumping.get(8));
           else if (this.getImage() == imgJumping.get(8))
                this.setImage(imgJumping.get(1));
-          timerImagesRun.mark();
+          timerImages.mark();
         }
     }
     
+    public void die()
+    {
+       if(timerImages.millisElapsed() > 200)
+       {
+           for(GreenfootImage img : imgRunning)
+            if(this.getImage() == img)
+                this.setImage(imgDying.get(0));
+                
+          if (this.getImage() == imgDying.get(0))
+               this.setImage(imgDying.get(1));
+          else if (this.getImage() == imgDying.get(1))
+               this.setImage(imgDying.get(2));
+          else if (this.getImage() == imgDying.get(2))
+               this.setImage(imgDying.get(3));
+          else if (this.getImage() == imgDying.get(3))
+               this.setImage(imgDying.get(4));
+          else if (this.getImage() == imgDying.get(4))
+               this.setImage(imgDying.get(5));
+          else if (this.getImage() == imgDying.get(5))
+               this.setImage(imgDying.get(6));
+          else if (this.getImage() == imgDying.get(6))
+               this.setImage(imgDying.get(7));
+          else if (this.getImage() == imgDying.get(7))
+               this.setImage(imgDying.get(8));
+          else if (this.getImage() == imgDying.get(8))
+               this.setImage(imgDying.get(1));
+          timerImages.mark();
+       }
+    }
     
     public void jump()
     {

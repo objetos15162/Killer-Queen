@@ -8,7 +8,7 @@ import java.awt.Font;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Exit extends Boton
+public class Exit extends Button
 {
     public Label label;
     /**

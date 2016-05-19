@@ -1,6 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
 import java.awt.Color;
+import java.awt.Font;
 /**
  * Write a description of class Level1 here.
  * 
@@ -38,17 +39,24 @@ public class Level1 extends Levels
         timerWin.mark();
         timerDisplay = new Counter("Time: ");
         addObject(timerDisplay,764,24);
-        label = new Label("Press enter to continue",80);
-        //addObject(label, getWidth()/2,getHeight()/2); 
+        if(start == false)
+       {
+           label = new Label("Press enter to continue",80);
+           label.setFillColor(Color.RED);
+           label.setLineColor(Color.RED);
+           Font.decode("TAHOMA");
+           addObject(label, getWidth()/2,getHeight()/2); 
+       }
     }
  
   
     public void act()
     {
-           
        if ( Greenfoot.isKeyDown("enter"))
-            start = true;
+       {    
+           start = true;
             removeObject(label);
+       }
         
         if(start == true)
         {
@@ -58,12 +66,13 @@ public class Level1 extends Levels
                 timerWin.mark();
             }
             
-            if(Greenfoot.getRandomNumber(650) == 1)
+            if(Greenfoot.getRandomNumber(500) == 1)
            //if(timerSkel.millisElapsed() > Greenfoot.getRandomNumber(10000)+5000)
            {
                addSkeleton();
                timerSkel.mark();
            } 
+           
            genGround();
            updateTime();
            randomCoins();
@@ -75,15 +84,6 @@ public class Level1 extends Levels
         }
     }
     
-    private void genGround()
-    {
-        if (getObjects(VolcanGround.class).size() < 5)
-        {
-            VolcanGround g = new VolcanGround();
-            addObject(g,getWidth(), getHeight() - g.getImage().getHeight()/2); 
-        }
-    }
-    
     private void addSkeleton()
     {
         addObject(new Skeleton(), getWidth(), getHeight() - 148);
@@ -91,7 +91,7 @@ public class Level1 extends Levels
     
     public void levelComplete()
     {
-        if(timerDisplay.getValue() >= 30)
+        if(timerDisplay.getValue() >= 20)
         {
             Level2 level2 = new Level2();
             Greenfoot.setWorld(level2);

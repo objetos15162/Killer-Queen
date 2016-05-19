@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class HighScores extends Boton
+public class HighScores extends Button
 {
     /**
      * Act - do whatever the HighScores wants to do. This method is called whenever

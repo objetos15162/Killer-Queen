@@ -6,7 +6,7 @@ import java.awt.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Play extends Boton
+public class Play extends Button
 {
     private Level1 level1;
     

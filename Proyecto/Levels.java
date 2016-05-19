@@ -19,7 +19,8 @@ public class Levels extends World
     private Counter trappedCoin;//Contador de monedas atrapadas.
     private Label labelCoin;//Muestra monedas atrapadas.
     private CoinNotMovable coinTrapped;
-    
+    private GameOver gameOver;
+    private SimpleTimer timerDie;
     /**
      * Constructor for objects of class Levels.
      * 
@@ -32,6 +33,8 @@ public class Levels extends World
         addObject(killer, 90, yGround - killer.getImage().getHeight());
         timerCoins= new SimpleTimer();
         timerCoins.mark();
+        timerDie =new SimpleTimer();
+        timerDie.mark();
         DrawLifes(5);
         //Timer que determina cuando se ha superado el nivel.
         timerWin = new SimpleTimer();
@@ -44,9 +47,9 @@ public class Levels extends World
         coinTrapped = new CoinNotMovable();
         addObject(coinTrapped,46,65);
         labelCoin.setValue(0);
-        labelCoin.setFillColor(Color.WHITE);
-        labelCoin.setLineColor(Color.WHITE);
-        setPaintOrder(KillerQueen.class);
+        labelCoin.setFillColor(Color.RED);
+        labelCoin.setLineColor(Color.RED);
+        setPaintOrder(KillerQueen.class, Enemies.class);
     }
     
     public void act()
@@ -65,7 +68,6 @@ public class Levels extends World
     public void randomCoins()
     {
          if(Greenfoot.getRandomNumber(320) == 1) 
-           //if(timerCoins.millisElapsed() > Greenfoot.getRandomNumber(20000)+1000)
            {
                DrawCoins(Greenfoot.getRandomNumber(4) + 1);
                timerCoins.mark();
@@ -90,6 +92,15 @@ public class Levels extends World
              x += 37; 
          }
          
+        if(lifes == 0)
+        {
+           killer.die();
+           if(timerDie.millisElapsed() > 3000)
+           {   gameOver = new GameOver();
+               Greenfoot.setWorld(gameOver);
+           }
+        }
+        
     }
     
     private void DrawCoins(int num)
@@ -106,4 +117,43 @@ public class Levels extends World
     {
         labelCoin.setValue(killer.getTrappedCoins());
     }
+    
+    public void genGround()
+    {
+        if(getClass() == Level1.class)
+        {
+            if (getObjects(VolcanGround.class).size() < 5)
+            {
+                VolcanGround g = new VolcanGround();
+                addObject(g,getWidth(), getHeight() - g.getImage().getHeight()/2); 
+            }
+        }
+        else if (getClass() == Level2.class)
+        {
+            if (getObjects(DesertGround.class).size() < 5)
+            {
+                DesertGround g = new DesertGround();
+                addObject(g,getWidth(), getHeight() - g.getImage().getHeight()/2); 
+            }
+        }
+        else if(getClass() == Level3.class)
+        {
+            if (getObjects(WinterGround.class).size() < 5)
+            {
+                WinterGround g = new WinterGround();
+                addObject(g,getWidth(), getHeight() - g.getImage().getHeight()/2); 
+            }
+        }
+        else if(getClass() == Level4.class)
+        {
+             if (getObjects(ForestGround.class).size() < 5)
+             {
+                 ForestGround g = new ForestGround();
+                 addObject(g,getWidth(), getHeight() - g.getImage().getHeight()/2); 
+                }
+         }
+        }
+    
 }
+ 
+

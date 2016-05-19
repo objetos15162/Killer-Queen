@@ -11,11 +11,10 @@ import java.awt.*;
 public class StartMenu extends World
 {
     private Play play;
-    //private Home home;
     private Exit exit;
     private HighScores scores;
     private Help help;
-    private ArrayList<Boton> lBotones;
+    private ArrayList<Button> lBotones;
    
     /**
      * Constructor for objects of class MyWorld.
@@ -65,11 +64,12 @@ public class StartMenu extends World
         else if(Greenfoot.mouseClicked(exit))
         {
            exit.isClicked();
-           Label label = new Label("Thanks for playing!!",90);
-           label.setFillColor(Color.MAGENTA);
-           label.setLineColor(Color.MAGENTA);
+           Label label = new Label("Thanks for playing!!",100);
+           label.setFillColor(Color.RED);
+           label.setLineColor(Color.RED);
            addObject(label,getWidth()/2,getHeight()/2);
            removeObjects(lBotones);
+           setBackground("Winter.png");
         }
     }
 }

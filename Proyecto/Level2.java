@@ -47,17 +47,18 @@ public class Level2 extends Levels
             timerWin.mark();
         }
         
-      if(Greenfoot.getRandomNumber(650) == 3)
+      if(Greenfoot.getRandomNumber(400) == 3)
        //if(timerSkel.millisElapsed() > Greenfoot.getRandomNumber(10000)+5000)
        {
            addZombie();
            timerZombie.mark();
        }
-       
+       genGround();
        levelComplete();
        updateTime();
        randomCoins();
     }
+    
     
     private void addZombie()
     {
@@ -66,9 +67,10 @@ public class Level2 extends Levels
     
     public void levelComplete()
     {
-        Level3 level3 = new Level3();
-        if(timerDisplay.getValue() >= 30)
+        
+        if(timerDisplay.getValue() >= 20)
         {
+            Level3 level3 = new Level3();
             Greenfoot.setWorld(level3);
             timerWin.mark();
         }  
