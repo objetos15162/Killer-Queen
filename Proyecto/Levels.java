@@ -1,6 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
 import java.awt.Color;
+import java.awt.image.*;
+import java.awt.Graphics2D;
+
 /**
  * Write a description of class Levels here.
  * 
@@ -14,13 +17,16 @@ public class Levels extends World
     public int yGround;
     private List<Life> lHearts;//Arreglo de vidas.
     private Coin coin;
-    private Counter timerDisplay;//Muestra el tiempo.
+    public Counter timerDisplay;//Muestra el tiempo.
     private SimpleTimer timerWin;//Determina cuando se supera el nivel.
     private Counter trappedCoin;//Contador de monedas atrapadas.
     private Label labelCoin;//Muestra monedas atrapadas.
     private CoinNotMovable coinTrapped;
     private GameOver gameOver;
     private SimpleTimer timerDie;
+    //private int number;
+    private boolean die;
+    private Ground ground;
     /**
      * Constructor for objects of class Levels.
      * 
@@ -28,14 +34,14 @@ public class Levels extends World
     public Levels()
     {    
         super(850, 500, 1);
+        die = false;
         yGround = getHeight() - 54;
         killer = new KillerQueen();
         addObject(killer, 90, yGround - killer.getImage().getHeight());
         timerCoins= new SimpleTimer();
         timerCoins.mark();
         timerDie =new SimpleTimer();
-        timerDie.mark();
-        DrawLifes(5);
+        DrawLifes(killer.getLifes());
         //Timer que determina cuando se ha superado el nivel.
         timerWin = new SimpleTimer();
         timerWin.mark();
@@ -49,20 +55,21 @@ public class Levels extends World
         labelCoin.setValue(0);
         labelCoin.setFillColor(Color.RED);
         labelCoin.setLineColor(Color.RED);
-        setPaintOrder(KillerQueen.class, Enemies.class);
-    }
-    
-    public void act()
-    {
+        setPaintOrder(KillerQueen.class, Enemies.class, Obstacles.class, Life.class, Coin.class);
+        ground = new Ground();
+         for(int i=0; i<4; i++)
+        {
+            addObject(new Ground(),256 * i , yGround);
+        }
     }
     
     public void updateTime()
     {
        if(timerWin.millisElapsed() > 1000)
-            {
-                timerDisplay.add(1);
-                timerWin.mark();
-            }
+        {
+            timerDisplay.add(1);
+            timerWin.mark();
+        }
     }
     
     public void randomCoins()
@@ -90,17 +97,7 @@ public class Levels extends World
          {
              addObject(new Life(), x ,20);
              x += 37; 
-         }
-         
-        if(lifes == 0)
-        {
-           killer.die();
-           if(timerDie.millisElapsed() > 3000)
-           {   gameOver = new GameOver();
-               Greenfoot.setWorld(gameOver);
-           }
-        }
-        
+         }     
     }
     
     private void DrawCoins(int num)
@@ -120,40 +117,41 @@ public class Levels extends World
     
     public void genGround()
     {
-        if(getClass() == Level1.class)
+        if(getClass() == Level1.class )
         {
-            if (getObjects(VolcanGround.class).size() < 5)
+            if (getObjectsAt(getWidth(), getHeight() - 10, Ground.class).size() == 0)
             {
-                VolcanGround g = new VolcanGround();
-                addObject(g,getWidth(), getHeight() - g.getImage().getHeight()/2); 
+                Ground ground = new Ground();
+                addObject(ground, getWidth() , yGround);
             }
         }
-        else if (getClass() == Level2.class)
+        else if(getClass() == Level2.class )
         {
-            if (getObjects(DesertGround.class).size() < 5)
+            if (getObjectsAt(getWidth(), getHeight() - 10, Ground.class).size() == 0)
             {
-                DesertGround g = new DesertGround();
-                addObject(g,getWidth(), getHeight() - g.getImage().getHeight()/2); 
+                Ground ground = new Ground();
+                addObject(ground, getWidth() , yGround);
             }
         }
-        else if(getClass() == Level3.class)
+        else if(getClass() == Level3.class )
         {
-            if (getObjects(WinterGround.class).size() < 5)
+            if (getObjectsAt(getWidth(), getHeight() - 10, Ground.class).size() == 0)
             {
-                WinterGround g = new WinterGround();
-                addObject(g,getWidth(), getHeight() - g.getImage().getHeight()/2); 
+                Ground ground = new Ground();
+                addObject(ground, getWidth() , yGround);
             }
         }
-        else if(getClass() == Level4.class)
+        else if(getClass() == Level4.class )
         {
-             if (getObjects(ForestGround.class).size() < 5)
-             {
-                 ForestGround g = new ForestGround();
-                 addObject(g,getWidth(), getHeight() - g.getImage().getHeight()/2); 
-                }
-         }
+            if (getObjectsAt(getWidth(), getHeight() - 10, Ground.class).size() == 0)
+            {
+                Ground ground = new Ground();
+                addObject(ground, getWidth() , yGround);
+            }
         }
-    
+        
+        }
+   
 }
  
 

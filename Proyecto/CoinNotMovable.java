@@ -32,7 +32,7 @@ public class CoinNotMovable extends Actor
         turn();
     }  
     
-    public void turn()
+    private void turn()
     {
         if(timerCoins.millisElapsed() > 200)
         {

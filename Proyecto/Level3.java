@@ -11,8 +11,12 @@ public class Level3 extends Levels
     private SimpleTimer timerVampire;//Agrega esqueletos aleatorios
     private Counter timerDisplay;//Muestra el tiempo.
     private SimpleTimer timerWin;//Determina cuando se supera el nivel.
-    private WinterGround ground;
+    private Ground ground;
     private Vampires vampire;
+    private Crystal crystal;
+    private SimpleTimer timerDecoration;
+    private Pine pine;
+    private Mist mist;
     /**
      * Constructor for objects of class Level3.
      * 
@@ -22,47 +26,75 @@ public class Level3 extends Levels
         setBackground("Winter.png");
         this.getBackground().scale(850, 500);
         timerVampire = new SimpleTimer();
+        timerDecoration = new SimpleTimer();
         timerDisplay = new Counter();
         timerWin = new SimpleTimer();
         timerDisplay = new Counter("Time: ");
         addObject(timerDisplay,764,24);
+        mist = new Mist();
+        addObject(mist, 456, 123);
         int xi = 0;
         
         for(int i=0; i<4; i++)
         {
-            addObject(new WinterGround(),256 * i , yGround);
+            addObject(new Ground(),256 * i , yGround);
         }
         
     }
     
      public void act()
     {
-      if(timerWin.millisElapsed() > 1000)
+      addRandomVampire();
+      genGround();
+      levelComplete();
+      updateTime();
+      randomCoins();
+      updateClock();
+      addDecoration();
+    }
+    
+    private void updateClock()
+    {
+        if(timerWin.millisElapsed() > 1000)
         {
             timerDisplay.add(1);
             timerWin.mark();
         }
-        
-      if(Greenfoot.getRandomNumber(200) == 10)
-       //if(timerSkel.millisElapsed() > Greenfoot.getRandomNumber(10000)+5000)
+    }
+    
+    private void addRandomVampire()
+    {
+        if(Greenfoot.getRandomNumber(200) == 10)
        {
-           addVampire();
+           addObject(new Vampires(),getWidth(),yGround - 86);
            timerVampire.mark();
        }
-       genGround();
-       levelComplete();
-       updateTime();
-       randomCoins();
+        
     }
     
-    private void addVampire()
+    private void addDecoration()
     {
-        addObject(new Vampires(),getWidth(),yGround - 86);
+       if(Greenfoot.getRandomNumber(300) == 10)
+       { 
+           addObject(new Crystal(), getWidth(), getHeight() - 140);
+           timerDecoration.mark();
+       }
+        
+       if(Greenfoot.getRandomNumber(250) == 5)
+       {
+            addObject(new Mist(), getWidth() , 99);
+       }
+        
+       if(Greenfoot.getRandomNumber(490) == 20)
+       { 
+           addObject(new Pine(), getWidth(), 317);
+           timerDecoration.mark();
+       }
     }
     
-    public void levelComplete()
+    private void levelComplete()
     {
-       if(timerDisplay.getValue() >= 20)
+       if(timerDisplay.getValue() >= 80)
         {
             Level4 level4 = new Level4();
             Greenfoot.setWorld(level4);

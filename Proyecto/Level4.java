@@ -8,14 +8,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Level4 extends Levels
 {
-    private SimpleTimer timerZombie;//Agrega esqueletos aleatorios
     private Counter timerDisplay;//Muestra el tiempo.
     private SimpleTimer timerWin;//Determina cuando se supera el nivel.
-    private ForestGround ground;
     private Zombie zombie;
-    private SimpleTimer timerSkeleton;
+    private SimpleTimer timerEnemies;
     private Skeleton skeleton;
-    
+    private Ground ground;
+    private Mushroom mushroom;
+    private SimpleTimer timerDecoration;
+    private Clouds clouds;
+    private TreeForest tree;
     /**
      * Constructor for objects of class Level4.
      * 
@@ -25,19 +27,12 @@ public class Level4 extends Levels
         setBackground("Forest.png");
         this.getBackground().scale(850, 500);
         
-        ground = new ForestGround();
-        int xi = 0;
-        
         for(int i=0; i<4; i++)
         {
-            addObject(new ForestGround(),256 * i , yGround);
+            addObject(new Ground(),256 * i , yGround);
         }
-        
-        timerZombie = new SimpleTimer();
-        timerZombie.mark();
-        timerSkeleton = new SimpleTimer();
-        timerSkeleton.mark();
-        //Timer que determina cuando se ha superado el nivel 1
+        timerDecoration = new SimpleTimer();
+        timerEnemies = new SimpleTimer();
         timerWin = new SimpleTimer();
         timerWin.mark();
         timerDisplay = new Counter("Time: ");
@@ -46,47 +41,66 @@ public class Level4 extends Levels
     
     public void act()
     {
-      if(timerWin.millisElapsed() > 1000)
-        {
-            timerDisplay.add(1);
-            timerWin.mark();
-        }
-        
-      if(Greenfoot.getRandomNumber(250) == 10)
-       //if(timerSkel.millisElapsed() > Greenfoot.getRandomNumber(10000)+5000)
-       {
-           addZombie();
-           timerZombie.mark();
-       }
-       
-      if(Greenfoot.getRandomNumber(250) == 10)
-      {
-          addSkeleton();
-          timerSkeleton.mark();
-      }
-      
        genGround();
        levelComplete();
        updateTime();
        randomCoins();
+       addRandomEnemies();
+       addDecoration();
+       updateClock();
     }
     
-    private void addZombie()
+     private void addRandomEnemies()
     {
-        addObject(new Zombie(),getWidth(),yGround - 84);
+        if(Greenfoot.getRandomNumber(250) == 10)
+      {
+          addObject(new Skeleton(),getWidth(),yGround - 84);
+          timerEnemies.mark();
+      }
+      else if(Greenfoot.getRandomNumber(250) == 10)
+      {
+          addObject(new Zombie(),getWidth(),yGround - 84);
+          timerEnemies.mark();
+      }
+        
     }
     
-     private void addSkeleton()
+    private void addDecoration()
     {
-        addObject(new Skeleton(),getWidth(),yGround - 84);
+       if(Greenfoot.getRandomNumber(300) == 10)
+       { 
+           addObject(new Mushroom(), getWidth(), getHeight() - 128);
+           timerDecoration.mark();
+       }
+        
+       if(Greenfoot.getRandomNumber(650) == 10)
+       {
+            addObject(new Clouds(), getWidth() , 99);
+       }
+        
+       if(Greenfoot.getRandomNumber(490) == 20)
+       { 
+           addObject(new TreeForest(), getWidth(), 260);
+           timerDecoration.mark();
+       }
     }
     
-    public void levelComplete()
+    private void updateClock()
     {
-        Level5 level5 = new Level5();
-        if(timerDisplay.getValue() >= 20)
+        if(timerWin.millisElapsed() > 1000)
         {
-            Greenfoot.setWorld(level5);
+            timerDisplay.add(1);
+            timerWin.mark();
+        }
+    }
+    
+    private void levelComplete()
+    {
+        
+        if(timerDisplay.getValue() >= 50)
+        {
+            StartMenu menu = new StartMenu();
+            Greenfoot.setWorld(menu);
             timerWin.mark();
         }  
      }

@@ -34,7 +34,7 @@ public class Coin extends Scrolleable
         remove(this);
     }   
     
-    public void turn()
+    private void turn()
     {
         if(timerCoins.millisElapsed() > 200)
         {

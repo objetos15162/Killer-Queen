@@ -66,7 +66,7 @@ public class Vampires extends Enemies
      * de imágenes declarada en el constructor, iniciando en el índice 0. Si es verdadero entonces actualiza la imagen del índice siguiente y asi sucesivamente hasta llegar 
      * al índice 8, que es el número total de la lista, y posteriormente comienza en el índice 1 y se inicia el timer nuevamente. Esto se repite siempre.
      */
-    public void walk()
+    private void walk()
     {
          if(timerImages.millisElapsed() > 100)
           {
@@ -94,7 +94,7 @@ public class Vampires extends Enemies
            }
     }
     
-    public void attackImages()
+    private void attackImages()
     {
         if(timerImages.millisElapsed() > 100)
         {
