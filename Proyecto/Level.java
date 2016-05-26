@@ -107,7 +107,7 @@ public class Level extends World
      */
     public void randomCoins()
     {
-         if(Greenfoot.getRandomNumber(320) == 1) 
+         if(Greenfoot.getRandomNumber(50) == 10) 
            {
                DrawCoins(Greenfoot.getRandomNumber(4) + 1);
                timerCoins.mark();
@@ -140,7 +140,7 @@ public class Level extends World
     {
         int xi = getWidth();
         for(int i = 0; i<num ;i++){
-             addObject(new Coin(),xi + 32,yGround -125);
+             addObject(new Coin(),xi + 32,yGround -130);
              xi += 32;
         }
            
@@ -249,11 +249,13 @@ public class Level extends World
     }
     
     /**
-     * 
+     * Asigna el valor de la distancia.
      */
     public void setDistance(int distance)
     {
         this.distance = distance;
     }
+    
+    
 }
 

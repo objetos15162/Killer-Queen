@@ -15,12 +15,13 @@ public class Level4 extends Level
     private Zombie zombie;
     private SimpleTimer timerEnemies;
     private Skeleton skeleton;
+    private Vampire vampire;
     private Ground ground;
     private Mushroom mushroom;
     private SimpleTimer timerDecoration;
     private Clouds clouds;
     private TreeForest tree;
-    private GreenfootSound sound;
+   
     /**
      * Constructor for objects of class Level4.
      * 
@@ -43,8 +44,6 @@ public class Level4 extends Level
         clouds = new Clouds();
         addObject(clouds, getWidth(), 74);
         setDistance(distance);
-        sound = new GreenfootSound("goings.mp3");
-        sound.play();
     }
     
     /**
@@ -75,6 +74,12 @@ public class Level4 extends Level
       else if(Greenfoot.getRandomNumber(250) == 10)
       {
           addObject(new Zombie(),getWidth(),getYground() - 84);
+          timerEnemies.mark();
+      }
+      
+      else if(Greenfoot.getRandomNumber(250) == 10)
+      {
+          addObject(new Vampire(),getWidth(),getYground() - 84);
           timerEnemies.mark();
       }
         
@@ -118,7 +123,6 @@ public class Level4 extends Level
         
         if(timerDisplay.getValue() >= 70)
         {
-            sound.stop();
             StartMenu menu = new StartMenu();
             Greenfoot.setWorld(menu);
             timerWin.mark();

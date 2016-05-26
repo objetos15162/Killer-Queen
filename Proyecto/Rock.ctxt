@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Rock
-comment0.text=\r\n\ Representa\ el\ obst\u00E1culo\ roca.\r\n\ \r\n\ @author\ (Evelyn\ G\u00F3mez)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Representa\ el\ obst\u00E1culo\ roca.\r\n\ \r\n\ @author\ (Evelyn\ G\u00F3mez)\ \r\n\ @version\ (Mayo\ 2016)\r\n
 comment1.params=
 comment1.target=void\ act()
 comment1.text=\r\n\ Ejecuta\ siempre\ los\ m\u00E9todos\ que\ manda\ llamar.\r\n

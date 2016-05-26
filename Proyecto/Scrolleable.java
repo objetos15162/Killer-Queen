@@ -25,7 +25,7 @@ public abstract class Scrolleable extends Actor
      */
     public void scrollObjects()
     {
-        move(-3);
+        move(-4);
     }
     
     /**

@@ -45,8 +45,8 @@ public class StartMenu extends World
            addObject(lBotones.get(i),lBotones.get(i).getImage().getWidth()+ x ,getHeight()- lBotones.get(i).getImage().getHeight()- y);
            x += lBotones.get(i).getImage().getWidth() + 10;
        }
-       sound = new GreenfootSound("creep.mp3");
-       sound.play();
+       sound = new GreenfootSound("sad.wav");
+       sound.playLoop();
     }
     
     /**
@@ -58,7 +58,7 @@ public class StartMenu extends World
         if(Greenfoot.mouseClicked(play))
         {
            play.isClicked();
-           sound.stop();
+          
         }
         else if(Greenfoot.mouseClicked(help))
         {
@@ -74,6 +74,7 @@ public class StartMenu extends World
            exit.isClicked();
            setBackground("exit.png");
            getBackground().scale(850, 500);
+           //sound.stop();
         }
     }
 }

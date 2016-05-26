@@ -25,7 +25,6 @@ public class Level1 extends Level
     private Rock rock;
     private Fog fog;
     private Tree tree;
-    private GreenfootSound sound;
    /**
      * Constructor for objects of class Level1.
      * 
@@ -55,8 +54,6 @@ public class Level1 extends Level
            addObject(label, getWidth()/2,getHeight()/2); 
   
        }
-      sound = new GreenfootSound("mystery_manor.mp3");
-      
     }
  
   
@@ -67,14 +64,13 @@ public class Level1 extends Level
     {
        
        if ( Greenfoot.isKeyDown("enter")&& start == false)
-       {    
-           sound.play();
+       {   
            start = true;
            removeObject(label);
        }
         
-        if(start == true)
-        {
+       if(start == true)
+       {
            checkScore();
            updateClock();
            addRandomSkeleton();
@@ -85,11 +81,11 @@ public class Level1 extends Level
            addObstacles();
            addDecoration();
            genDecoration();
-        }
-        else
-        {
-            genGround();
-        }
+       }
+       else
+       {
+           genGround();
+       }
     }
     
    /**
@@ -99,7 +95,7 @@ public class Level1 extends Level
     {
         if(Greenfoot.getRandomNumber(550) == 5)
         {
-            addObject(new Rock(), getWidth(), getHeight() - 143);
+            addObject(new Rock(), getWidth(), getHeight() - 133);
             timerObstacle.mark();
         }
     }
@@ -121,7 +117,7 @@ public class Level1 extends Level
      */
     private void addRandomSkeleton()
     {
-       if(Greenfoot.getRandomNumber(350) == 20)
+       if(Greenfoot.getRandomNumber(300) == 20)
        {
            addObject(new Skeleton(), getWidth(), getHeight() - 148);
            timerSkel.mark();
@@ -155,11 +151,9 @@ public class Level1 extends Level
         {
             Level2 level2 = new Level2(getDistance());
             Greenfoot.setWorld(level2);
-            sound.stop();
             timerWin.mark();
         }  
     }
-    
 }
    
     

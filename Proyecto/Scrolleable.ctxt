@@ -15,5 +15,5 @@ comment4.target=void\ remove(greenfoot.Actor)
 comment4.text=\r\n\ Verifica\ cuando\ un\ actor\ ha\ llegado\ al\ borde\ de\ la\ pantalla\ y\ lo\ elimina.\r\n
 comment5.params=actor
 comment5.target=void\ removeGround(greenfoot.Actor)
-comment5.text=\r\n\ Se\ encarga\ de\ simular\ que\ el\ piso\ se\ mueve\ hacia\ la\ izquierda\ y\ desaparece.\ A\ partir\ de\ la\ imagen\ original,\ crea\ una\ nueva,\ la\ recorta\ a\ la\ mitad,\ y\ la\ va\ posicionando\ en\r\n\ \r\n
+comment5.text=\r\n\ Se\ encarga\ de\ simular\ que\ el\ piso\ se\ mueve\ hacia\ la\ izquierda\ y\ desaparece.\ A\ partir\ de\ la\ imagen\ original,\ crea\ una\ nueva,\ la\ recorta\ a\ la\ mitad,\ y\ la\ va\ posicionando\ en\r\n\ el\ borde\ izquierdo\ de\ la\ pantalla,\ lo\ que\ simula\ el\ scroll\ del\ suelo.\r\n
 numComments=6

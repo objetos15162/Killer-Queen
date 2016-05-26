@@ -3,5 +3,5 @@ comment0.target=Mushroom
 comment0.text=\r\n\ Representa\ el\ obst\u00E1culo\ Mushroom\r\n\ \r\n\ @author\ (Evelyn\ G\u00F3mez)\ \r\n\ @version\ (Mayo\ 2016)\r\n
 comment1.params=
 comment1.target=void\ act()
-comment1.text=\r\n\ \r\n
+comment1.text=\r\n\ Ejecuta\ siempre\ los\ m\u00E9todos\ que\ manda\ llamar.\r\n
 numComments=2

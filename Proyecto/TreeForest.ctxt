@@ -3,5 +3,5 @@ comment0.target=TreeForest
 comment0.text=\r\n\ Representa\ la\ decoraci\u00F3n\ \u00E1rbol\ de\ bosque.\r\n\ \r\n\ @author\ (Evelyn\ Gomez)\ \r\n\ @version\ (Mayo\ 2016)\r\n
 comment1.params=
 comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ TreeForest\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment1.text=\r\n\ \ Ejecuta\ siempre\ los\ mpetodos\ que\ manda\ llamar.\r\n
 numComments=2

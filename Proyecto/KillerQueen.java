@@ -165,7 +165,7 @@ public class KillerQueen extends Actor
     {
         if(jumping == true && timerJumped.millisElapsed() < jumpingTime && getY() > getWorld().getHeight()/2)
         {
-            this.setLocation(getX(), getY() - 3);
+            this.setLocation(getX(), getY() - 4);
         }
         else if(timerJumped.millisElapsed() > jumpingTime && getY() < getWorld().getHeight() - 137)
         {
@@ -327,7 +327,7 @@ public class KillerQueen extends Actor
            
          }
          
-        if(timerAttacked.millisElapsed() > 2000)
+        if(timerAttacked.millisElapsed() > 4000)
             attacked = false;
         
    }
@@ -344,7 +344,14 @@ public class KillerQueen extends Actor
             removeTouching(Coin.class);
             ((Level)getWorld()).updateCoins();
             counterCoin.setValue(trappedCoins);
+            if(trappedCoins == 50)
+            {
+                lifes++;
+                ((Level)getWorld()).DrawLifes(lifes);
+                trappedCoins = 0;
+            }
          } 
+         
    }
     
    /**
@@ -372,7 +379,6 @@ public class KillerQueen extends Actor
    {
        this.lifes = lifes;
    }
-    
     
 }   
 

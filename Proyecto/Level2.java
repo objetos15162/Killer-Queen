@@ -20,7 +20,6 @@ public class Level2 extends Level
     private SimpleTimer timerDecoration;
     private Cactus cactus;
     private Clouds clouds;
-    private GreenfootSound sound;
     /**
      * Constructor for objects of class Level2.
      * 
@@ -44,8 +43,6 @@ public class Level2 extends Level
         timerWin.mark();
         timerDisplay = new Counter("Time: ");
         addObject(timerDisplay,764,24);
-        sound = new GreenfootSound("sad.wav");
-        sound.play();
     }
     
     /**
@@ -81,10 +78,9 @@ public class Level2 extends Level
     */
     private void addRandomZombie()
     {
-        if(Greenfoot.getRandomNumber(350) == 10)
+        if(Greenfoot.getRandomNumber(250) == 10)
         {
             addObject(new Zombie(),getWidth(),getYground() - 84);
-           
             timerZombie.mark();
         }
     }
@@ -96,7 +92,7 @@ public class Level2 extends Level
     {
         if(Greenfoot.getRandomNumber(500) == 10)
         { 
-            addObject(new Stone(), getWidth(), getHeight() - 130);
+            addObject(new Stone(), getWidth(), getHeight() - 120);
             timerDecoration.mark();
         }
         
@@ -115,13 +111,9 @@ public class Level2 extends Level
     {
         if(timerDisplay.getValue() >= 50)
         {
-            sound.stop();
             Level3 level3 = new Level3(getDistance());
             Greenfoot.setWorld(level3);
             timerWin.mark();
         }  
      }
-    
-    
-  
 }

@@ -19,7 +19,6 @@ public class Level3 extends Level
     private SimpleTimer timerDecoration;
     private Pine pine;
     private Mist mist;
-    private GreenfootSound sound;
     /**
      * Constructor for objects of class Level3.
      * 
@@ -37,9 +36,6 @@ public class Level3 extends Level
         mist = new Mist();
         addObject(mist, 456, 123);
         setDistance(distance);
-        sound = new GreenfootSound("racers.wav");
-        sound.play();
-        
         
         for(int i=0; i<4; i++)
         {
@@ -95,7 +91,7 @@ public class Level3 extends Level
     {
        if(Greenfoot.getRandomNumber(300) == 10)
        { 
-           addObject(new Crystal(), getWidth(), getHeight() - 140);
+           addObject(new Crystal(), getWidth(), 374);
            timerDecoration.mark();
         }
         
@@ -111,12 +107,11 @@ public class Level3 extends Level
      */
     private void levelComplete()
     {
-       if(timerDisplay.getValue() >= 60)
-        {
-            sound.stop();
-            Level4 level4 = new Level4(getDistance());
-            Greenfoot.setWorld(level4);
-            timerWin.mark();
-        }  
+       if(timerDisplay.getValue() >= 60 )
+       {
+           Level4 level4 = new Level4(getDistance());
+           Greenfoot.setWorld(level4);
+           timerWin.mark();
+       }  
      }
 }
