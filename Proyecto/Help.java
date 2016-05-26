@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Ayuda here.
+ * Representa el botón de ayuda.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Evelyn Gómez) 
+ * @version (Mayo 2016)
  */
 public class Help extends Button
 {
@@ -16,14 +16,16 @@ public class Help extends Button
     }
     
     /**
-     * Act - do whatever the Ayuda wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     *  Ejecuta siempre los métodos que manda llamar.
      */
     public void act() 
     {
-        // Add your action code here.
+       
     }   
     
+    /**
+     * Verifica que el botón ha sido presionado.
+     */
     public void isClicked()
     {
         Greenfoot.setWorld(help);

@@ -1,22 +1,22 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Boton here.
+ * Superclase Button. Representa los botones del menú principal.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Evelyn Gomez) 
+ * @version (Mayo 2016)
  */
 public class Button extends Actor
 {
-    /**
-     * Act - do whatever the Boton wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+   
     public void act() 
     {
         
     }   
     
+    /**
+     * Verifica si algún botón ha sido presionado.
+     */
     public void isClicked()
     {
     }

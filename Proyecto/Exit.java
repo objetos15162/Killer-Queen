@@ -3,17 +3,16 @@ import java.util.*;
 import java.awt.Color;
 import java.awt.Font;
 /**
- * Write a description of class Exit here.
+ * Representa el botón salir del juego.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Evelyn Gomez) 
+ * @version (Mayo 2016)
  */
 public class Exit extends Button
 {
     public Label label;
     /**
-     * Act - do whatever the Exit wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Ejecuta siempre los métodos que manda llamar.
      */
     public void act() 
     {

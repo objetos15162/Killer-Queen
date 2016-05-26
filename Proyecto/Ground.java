@@ -1,16 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Ground here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Representa los pisos de los distintos escenarios.
+ * @author (Evelyn Gomez) 
+ * @version (Mayo 2016)
  */
 public class Ground extends Scrolleable
 {
     /**
-     * Act - do whatever the Ground wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     *Ejecuta siempre los métodos que manda llamar.
      */
     public void act() 
     {
@@ -18,6 +16,11 @@ public class Ground extends Scrolleable
         scrollObjects();
         removeGround(this);
     } 
+    
+    
+    /**
+     * Verifica en que mundo se encuentra y dependiendo en cual se encuentre, asigna el piso correspondiente.
+     */
     
     private void setGroundImages()
     {

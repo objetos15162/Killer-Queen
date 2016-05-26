@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=UserRecords
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ UserRecords\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=UserRecords()
+comment2.params=points
+comment2.target=void\ saveRecords(int)
+comment2.text=\r\n\ Guarda\ un\ nuevo\ registro\ en\ los\ records.\r\n
+numComments=3

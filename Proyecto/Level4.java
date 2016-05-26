@@ -1,12 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Level4 here.
+ * Es el cuarto nivel. Aquí los enemigos que aparecen son zombies y v esqueletos. El jugador tendrá que esquivar los obstáculos que son los hongos venenosos
+ * que aparecen aleatoriamente a lo largo del juego.
+ * Para ganar debe completar los 70 segundos con al menos una vida.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Evelyn Gómez) 
+ * @version (Mayo 2016)
  */
-public class Level4 extends Levels
+public class Level4 extends Level
 {
     private Counter timerDisplay;//Muestra el tiempo.
     private SimpleTimer timerWin;//Determina cuando se supera el nivel.
@@ -18,18 +20,19 @@ public class Level4 extends Levels
     private SimpleTimer timerDecoration;
     private Clouds clouds;
     private TreeForest tree;
+    private GreenfootSound sound;
     /**
      * Constructor for objects of class Level4.
      * 
      */
-    public Level4()
+    public Level4(int distance)
     {
         setBackground("Forest.png");
         this.getBackground().scale(850, 500);
         
         for(int i=0; i<4; i++)
         {
-            addObject(new Ground(),256 * i , yGround);
+            addObject(new Ground(),256 * i , getYground());
         }
         timerDecoration = new SimpleTimer();
         timerEnemies = new SimpleTimer();
@@ -37,8 +40,16 @@ public class Level4 extends Levels
         timerWin.mark();
         timerDisplay = new Counter("Time: ");
         addObject(timerDisplay,764,24);
+        clouds = new Clouds();
+        addObject(clouds, getWidth(), 74);
+        setDistance(distance);
+        sound = new GreenfootSound("goings.mp3");
+        sound.play();
     }
     
+    /**
+     * Ejecuta siempre los métodos que manda llamar.
+     */
     public void act()
     {
        genGround();
@@ -48,34 +59,36 @@ public class Level4 extends Levels
        addRandomEnemies();
        addDecoration();
        updateClock();
+       genDecoration();
     }
     
+    /**
+     * Agrega esqueletos y zombies aleatoririamente en este nivel.
+     */
      private void addRandomEnemies()
     {
         if(Greenfoot.getRandomNumber(250) == 10)
       {
-          addObject(new Skeleton(),getWidth(),yGround - 84);
+          addObject(new Skeleton(),getWidth(),getYground() - 84);
           timerEnemies.mark();
       }
       else if(Greenfoot.getRandomNumber(250) == 10)
       {
-          addObject(new Zombie(),getWidth(),yGround - 84);
+          addObject(new Zombie(),getWidth(),getYground() - 84);
           timerEnemies.mark();
       }
         
     }
     
+    /**
+     * Se encarga de agregar decoraciones aleatoriamente en este nivel.
+     */
     private void addDecoration()
     {
        if(Greenfoot.getRandomNumber(300) == 10)
        { 
            addObject(new Mushroom(), getWidth(), getHeight() - 128);
            timerDecoration.mark();
-       }
-        
-       if(Greenfoot.getRandomNumber(650) == 10)
-       {
-            addObject(new Clouds(), getWidth() , 99);
        }
         
        if(Greenfoot.getRandomNumber(490) == 20)
@@ -85,6 +98,9 @@ public class Level4 extends Levels
        }
     }
     
+    /**
+     * Se encarga de actualizar el reloj.
+     */
     private void updateClock()
     {
         if(timerWin.millisElapsed() > 1000)
@@ -94,11 +110,15 @@ public class Level4 extends Levels
         }
     }
     
+    /**
+     * Se encarga de verificar el tiempo necesario para terminar el nivel y vuelve nuevamente al menú principal.
+     */
     private void levelComplete()
     {
         
-        if(timerDisplay.getValue() >= 50)
+        if(timerDisplay.getValue() >= 70)
         {
+            sound.stop();
             StartMenu menu = new StartMenu();
             Greenfoot.setWorld(menu);
             timerWin.mark();

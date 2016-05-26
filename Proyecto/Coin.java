@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 /**
- * Write a description of class Coin here.
+ * Representa las bonificaciones (monedas).
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Evelyn Gómez) 
+ * @version (Mayo 2016)
  */
 public class Coin extends Scrolleable
 {
@@ -24,8 +24,7 @@ public class Coin extends Scrolleable
     }
     
     /**
-     * Act - do whatever the Coin wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Ejecuta siempre los métodos que manda llamar.
      */
     public void act() 
     {
@@ -34,6 +33,9 @@ public class Coin extends Scrolleable
         remove(this);
     }   
     
+    /**
+     * Asigna las imágenes que simulan la rotación de la moneda.
+     */
     private void turn()
     {
         if(timerCoins.millisElapsed() > 200)

@@ -1,22 +1,24 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Restart here.
+ * Representa el botón reiniciar del juego.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Evelyn Gomez) 
+ * @version (Mayo 2016)
  */
 public class Restart extends Button
 {
     private Level1 level1;
     /**
-     * Act - do whatever the Restart wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Ejecuta siempre los métodos que manda llamar.
      */
     public void act()
     {
     }
     
+    /**
+     * Asigna nuevamente el nivel 1.
+     */
     public void isClicked() 
     {
         level1 = new Level1();

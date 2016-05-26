@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 /**
- * Write a description of class GameOver here.
+ * Esta clase se muestra cuando se ha perdido el juego. Tiene la opción de reiniciar el juego, o bien, salir.
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -19,19 +19,19 @@ public class GameOver extends World
     public GameOver()
     {    
        super(850,500,1);
-       setBackground("BGdesierto.png");
+       setBackground("GO2.png");
        this.getBackground().scale(850, 500);
        restart = new Play();
        exit = new Exit();
        addObject(restart,65,443);
        addObject(exit,800,443);
-       label = new Label("GAME OVER",100);
-       label.setFillColor(Color.RED);
-       label.setLineColor(Color.RED);
-       addObject(label,getWidth()/2, getHeight()/2);
+    
        
     }
     
+    /**
+     * Comprueba si el boton restart y el botón exit han sido presionados.
+     */
     public void act()
     {
         if(Greenfoot.mouseClicked(restart))
@@ -42,6 +42,9 @@ public class GameOver extends World
         else if(Greenfoot.mouseClicked(exit))
         {
             exit.isClicked();
+            setBackground("exit.png");
+            removeObject(exit);
+            removeObject(restart);
         }
         
         

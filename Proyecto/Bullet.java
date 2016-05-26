@@ -1,25 +1,32 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Bullet here.
+ * Representa las balas del arma de Killer Queen
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Evelyn Gómez) 
+ * @version (Mayo 2016)
  */
 public class Bullet extends Actor
 {
     private boolean active;
+    private SimpleTimer timerDie;
+    private int enemiesKilled;
+    public Bullet()
+    {
+       enemiesKilled = 0;
+    }
     
     /**
-     * Act - do whatever the Bullet wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Ejecuta siempre los métodos que manda llamar.
      */
     public void act() 
     {
         active = true;
         setImage("bullet_1.png");
-        move(2);
+        //updateEnemies();
+        move(5);
         removeEnemies();
+           
         if(this.isAtEdge())
         {
             getWorld().removeObject(this);
@@ -28,15 +35,29 @@ public class Bullet extends Actor
         
     }    
     
-    
+    /**
+     * Verifica si esta tocando la clase enemigos y los elimina.
+     */
     private void removeEnemies()
     {
-        if(isTouching(Enemies.class) && active == true)
+        if(isTouching(Enemie.class) && active == true)
         {
-            removeTouching(Enemies.class);
+            removeTouching(Enemie.class);
             active = false;
             this.setLocation(getWorld().getWidth(), 0);
         }
-            
+        
     }
+
+    
+    public void setEnemiesKilled()
+    {
+        this.enemiesKilled = enemiesKilled;
+    }
+    
+    public int getEnemiesKilled()
+    {
+        return enemiesKilled;
+    }
+   
 }

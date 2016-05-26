@@ -2,25 +2,32 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
 
 /**
- * Write a description of class Skeleton here.
+ * Esta clase representa al enemigo Skeleton y sus habilidades de caminar y atacar.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Evelyn Gómez) 
+ * @version (Mayo 2016)
  */
-public class Skeleton extends Enemies
+
+public class Skeleton extends Enemie
 {
     private ArrayList<GreenfootImage> imgWalking;
     private ArrayList<GreenfootImage> imgAttacking;
     private SimpleTimer timerImages;
     private SimpleTimer timerSkel;
+    private SimpleTimer timerDie;
     private boolean hit;
+    private boolean died;
+    private int score;
     public Skeleton()
     {
         timerImages = new SimpleTimer();
         timerImages.mark();
         timerSkel = new SimpleTimer();
         timerSkel.mark();
+        timerDie= new SimpleTimer();
         hit = false;
+        died = false;
+        score = 0;
         //Se crea un ArrayList, y se recorre con un ciclo for para ir dando un nombre a cada imagen y posteriormente se va agregando cada elemento a la lista.
         String img = "";
         imgWalking = new ArrayList();
@@ -39,37 +46,41 @@ public class Skeleton extends Enemies
             img = "hit" + i + ".png";
             imgAttacking.add(new GreenfootImage(img));
         }
-        
+       
     }
     
-    
+ 
     /**
-     * Se manda llamar al método run(), que simula el movimiento de Skeleton.
-     * Se llama al método move y se le pasa como parámetro un número entero negativo, para que Skeleton se mueva hacia la izquierda, y camine hacia Killer Queen.
+     * Ejecuta siempre los métodos que manda llamar.
      */
     public void act() 
     {
-        scrollObjects();
-        if(getOneObjectAtOffset(0, 0, KillerQueen.class) != null)
+       scrollObjects();
+       updateScore();
+       attack();
+       remove(this);
+    }   
+    
+    public int getScore()
+    {
+        return score;
+    }
+       
+    private void updateScore()
+    {
+        if(isTouching(Bullet.class))
         {
-            attackImages();
-            hit = true;
+            score = score + 100;
         }
-        else 
-        {
-           run();
-           hit = false;
-        }
-        remove(this);
-    }  
-      
-     /**
+    }
+    
+    /**
      * Este método se encarga de asignar las imágenes a Skeleton para simular el movimiento del enemigo caminando.
      * Se utiliza la clase SimpleTimer, cada que pasan 200 milisegundos, hay un condicional verifica que la imagen actual del objeto sea igual a la imagen de la lista 
      * de imágenes declarada en el constructor, iniciando en el índice 0. Si es verdadero entonces actualiza la imagen del índice siguiente y asi sucesivamente hasta llegar 
      * al índice 8, que es el número total de la lista, y posteriormente comienza en el índice 1 y se inicia el timer nuevamente. Esto se repite siempre.
      */
-    private void run()
+    private void walk()
     {
         if(timerImages.millisElapsed() > 200)
         {
@@ -99,6 +110,12 @@ public class Skeleton extends Enemies
         }
      }
     
+     /**
+     * Este método se encarga de asignar las imágenes a Skeleton para simular el movimiento del enemigo atacando.
+     * Se utiliza la clase SimpleTimer, cada que pasan 200 milisegundos, hay un condicional verifica que la imagen actual del objeto sea igual a la imagen de la lista 
+     * de imágenes declarada en el constructor, iniciando en el índice 0. Si es verdadero entonces actualiza la imagen del índice siguiente y asi sucesivamente hasta llegar 
+     * al índice 12, que es el número total de la lista, y posteriormente comienza en el índice 1 y se inicia el timer nuevamente. Esto se repite siempre.
+      */
     private void attackImages()
     {
         if(timerImages.millisElapsed() > 100)
@@ -127,5 +144,22 @@ public class Skeleton extends Enemies
         }
     }
     
-    
-}
+    /**
+     * Verifica si el objeto Killer Queen está cerca de este objeto y llama al método attackImages(), para simluar el movimiento de ataque.
+     */
+    private void attack()
+    {
+       if(getOneObjectAtOffset(0, 0, KillerQueen.class) != null)
+        {
+            attackImages();
+            hit = true;
+        }
+        else 
+        {
+           walk();
+           hit = false;
+        } 
+    }
+    }
+
+

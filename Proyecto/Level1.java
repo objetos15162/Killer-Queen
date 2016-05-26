@@ -5,18 +5,18 @@ import java.awt.Font;
 /**
  * Es el primer y el más fácil de los niveles. Aquí los enemigos que aparecen son esqueletos y el jugador tendrá que esquivar los obstáculos que son las rocas cafés
  * que aparecen aleatoriamente a lo largo del juego.
- * Para ganar debe completar los 60 segundos con al menos una vida.
+ * Para ganar debe completar los 40 segundos con al menos una vida.
  * 
  * @author (Evelyn Gómez) 
  * @version (Mayo 2016)
  */
-public class Level1 extends Levels
+public class Level1 extends Level
 {
     private Skeleton skeleton;
     private Ground ground;
     private boolean start;
     private SimpleTimer timerSkel;//Agrega esqueletos aleatorios
-    private Counter timerDisplay;//Muestra el tiempo.
+    private Counter timerDisplay;//Muestra el tiempo
     private SimpleTimer timerWin;//Determina cuando se supera el nivel.
     private SimpleTimer timerObstacle;
     private SimpleTimer timerDecoration;
@@ -25,6 +25,7 @@ public class Level1 extends Levels
     private Rock rock;
     private Fog fog;
     private Tree tree;
+    private GreenfootSound sound;
    /**
      * Constructor for objects of class Level1.
      * 
@@ -52,20 +53,29 @@ public class Level1 extends Levels
            label.setLineColor(Color.RED);
            Font.decode("TAHOMA");
            addObject(label, getWidth()/2,getHeight()/2); 
+  
        }
+      sound = new GreenfootSound("mystery_manor.mp3");
+      
     }
  
   
+    /**
+     * Ejecuta siempre los métodos que manda llamar.
+     */
     public void act()
     {
-       if ( Greenfoot.isKeyDown("enter"))
+       
+       if ( Greenfoot.isKeyDown("enter")&& start == false)
        {    
+           sound.play();
            start = true;
            removeObject(label);
        }
         
         if(start == true)
         {
+           checkScore();
            updateClock();
            addRandomSkeleton();
            genGround();
@@ -74,6 +84,7 @@ public class Level1 extends Levels
            levelComplete();
            addObstacles();
            addDecoration();
+           genDecoration();
         }
         else
         {
@@ -81,7 +92,9 @@ public class Level1 extends Levels
         }
     }
     
-   
+   /**
+    * Agrega obstáculos en el mundo aleatoriamente.
+    */
     private void addObstacles()
     {
         if(Greenfoot.getRandomNumber(550) == 5)
@@ -91,6 +104,9 @@ public class Level1 extends Levels
         }
     }
     
+    /**
+     * Actualiza el reloj del mundo.
+     */
     private void updateClock()
     {
         if(timerWin.millisElapsed() > 1000)
@@ -100,6 +116,9 @@ public class Level1 extends Levels
         }
     }
     
+    /**
+     * Agrega esqueletos al mundo aleatoriamnente.
+     */
     private void addRandomSkeleton()
     {
        if(Greenfoot.getRandomNumber(350) == 20)
@@ -109,17 +128,15 @@ public class Level1 extends Levels
        } 
     }
     
+    /**
+     * Agrega decoraciones al mundo aleatoriamente.
+     */
     private void addDecoration()
     {
         if(Greenfoot.getRandomNumber(500) == 10)
         { 
             addObject(new Skull(), getWidth(), getHeight() - 128);
             timerDecoration.mark();
-        }
-        
-        if(Greenfoot.getRandomNumber(350) == 5)
-        {
-            addObject(new Fog(), getWidth() , 165);
         }
         
         if(Greenfoot.getRandomNumber(490) == 20)
@@ -129,15 +146,20 @@ public class Level1 extends Levels
         }
     }
     
+    /**
+     * Se encarga de verificar el tiempo necesario para terminar el nivel, crea un nuevo mundo Nivel 2 y lo asigna.
+     */
     private void levelComplete()
     {
-        if(timerDisplay.getValue() >= 60)
+        if(timerDisplay.getValue() >= 40)
         {
-            Level2 level2 = new Level2();
+            Level2 level2 = new Level2(getDistance());
             Greenfoot.setWorld(level2);
+            sound.stop();
             timerWin.mark();
         }  
     }
+    
 }
    
     

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Tiles here.
+ * Superclase Obstacles. Representa los obstáculos de los niveles.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Evelyn Gómez) 
+ * @version (Mayo 2016)
  */
 public class Obstacles extends Scrolleable
 {
@@ -14,6 +14,6 @@ public class Obstacles extends Scrolleable
      */
     public void act() 
     {
-        // Add your action code here.
+        
     }    
 }

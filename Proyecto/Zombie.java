@@ -1,12 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 /**
- * Write a description of class Zombie here.
+ * Esta clase representa al enemigo Zombie y sus habilidades de caminar y atacar.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Evelyn Gomez) 
+ * @version (Mayo 2016)
  */
-public class Zombie extends Enemies
+public class Zombie extends Enemie
 {
     private ArrayList<GreenfootImage> imgWalking;
     private ArrayList<GreenfootImage> imgAttacking;
@@ -28,7 +28,7 @@ public class Zombie extends Enemies
             img = "zombie" + i + ".png";
             imgWalking.add(new GreenfootImage(img));
         }
-        //Primer imagen de la lista que se asigna a Skeleton.
+        
         this.setImage(imgWalking.get(0));
         
         imgAttacking = new ArrayList();
@@ -42,8 +42,7 @@ public class Zombie extends Enemies
     }
     
     /**
-     * Act - do whatever the Zombie wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Ejecuta siempre los métodos que manda llamar.
      */
     public void act() 
     {
@@ -62,7 +61,7 @@ public class Zombie extends Enemies
     }    
     
      /**
-     * Este método se encarga de asignar las imágenes a Skeleton para simular el movimiento del enemigo caminando.
+     * Este método se encarga de asignar las imágenes a Zombie para simular el movimiento del enemigo caminando.
      * Se utiliza la clase SimpleTimer, cada que pasan 200 milisegundos, hay un condicional verifica que la imagen actual del objeto sea igual a la imagen de la lista 
      * de imágenes declarada en el constructor, iniciando en el índice 0. Si es verdadero entonces actualiza la imagen del índice siguiente y asi sucesivamente hasta llegar 
      * al índice 8, que es el número total de la lista, y posteriormente comienza en el índice 1 y se inicia el timer nuevamente. Esto se repite siempre.
@@ -97,6 +96,12 @@ public class Zombie extends Enemies
         }
     }
     
+    /**
+     * Este método se encarga de asignar las imágenes a Zombie para simular el movimiento del enemigo atacando.
+     * Se utiliza la clase SimpleTimer, cada que pasan 200 milisegundos, hay un condicional verifica que la imagen actual del objeto sea igual a la imagen de la lista 
+     * de imágenes declarada en el constructor, iniciando en el índice 0. Si es verdadero entonces actualiza la imagen del índice siguiente y asi sucesivamente hasta llegar 
+     * al índice 12, que es el número total de la lista, y posteriormente comienza en el índice 1 y se inicia el timer nuevamente. Esto se repite siempre.
+     */
     private void attackImages()
     {
         if(timerImages.millisElapsed() > 100)
@@ -121,5 +126,22 @@ public class Zombie extends Enemies
                this.setImage(imgAttacking.get(1));
           timerImages.mark();
         }
+    }
+    
+    /**
+     * Verifica si el objeto Killer Queen está cerca de este objeto y llama al método attackImages(), para simluar el movimiento de ataque.
+     */
+    private void attack()
+    {
+       if(getOneObjectAtOffset(0, 0, KillerQueen.class) != null)
+        {
+            attackImages();
+            hit = true;
+        }
+        else 
+        {
+           walk();
+           hit = false;
+        } 
     }
 }

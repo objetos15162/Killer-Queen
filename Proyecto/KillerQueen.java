@@ -3,8 +3,7 @@ import java.util.*;
 
 /**
  * Esta clase se encarga de darle todas las habilidades a Killer Queen, brincar, correr y disparar.
- * A
- * 
+ * Asigna imágenes que simulan todos los tipos de movimientos de este objeto.
  * @author (Evelyn Gómez) 
  * @version Mayo 2016)
  */
@@ -28,7 +27,7 @@ public class KillerQueen extends Actor
     private int jumpingTime;
     private boolean died;
     private boolean shoot;
-    
+    private UserRecords records;
     public KillerQueen()
     {
         jumpingTime = 600;
@@ -46,7 +45,7 @@ public class KillerQueen extends Actor
         shoot = false;
         timerJumped = new SimpleTimer();
         timerJumped.mark();
-        //Se crea un ArrayList, y se recorre con un ciclo for para ir dando un nombre a cada imagen y posteriormente se va agregando cada elemento a la lista.
+        records = new UserRecords();
         imgRunning = createImagesArray(9, "Run");
         imgJumping = createImagesArray(9, "jump");
         imgDying = createImagesArray(9, "dead");
@@ -71,11 +70,7 @@ public class KillerQueen extends Actor
     }
     
     /**
-     * Se manda llamar a run(), donde se simula el movimiento de Killer Queen.
-     * Se encarga de verificar cuando un enemigo ataca a Killer Queen, y por lo tanto actualiza las vidas, las cuales son dibujadas en el mundo, cuando se manda llamar 
-     * al método DrawLifes().
-     * El boleano attacked se inicializa en falso. Este nos ayuda a dar un tiempo de recuperación a Killer Queen cuando es atacada, para que durante ese pequeño lapso de
-     * tiempo los enemigos no puedan atacarla. 
+     * Está ejecutando siempre los métodos que manda llamar. Si ha muerto solo ejecuta el método die().
      */
     public void act() 
     {
@@ -126,6 +121,12 @@ public class KillerQueen extends Actor
         }
     }
     
+    /**
+     * Este método se encarga de asignar las imágenes a Killer Queen para simular el movimiento del jugador saltando.
+     * Se utiliza la clase SimpleTimer, cada que pasan 200 milisegundos, hay un condicional verifica que la imagen actual del objeto sea igual a la imagen de la lista 
+     * de imágenes declarada en el constructor, iniciando en el índice 0. Si es verdadero entonces actualiza la imagen del índice siguiente y asi sucesivamente hasta llegar 
+     * al índice 8, que es el número total de la lista, y posteriormente comienza en el índice 1 y se inicia el timer nuevamente. Esto se repite siempre.
+     */
     private void jumpImages()
     {
         if(timerImages.millisElapsed() > 200)
@@ -156,6 +157,10 @@ public class KillerQueen extends Actor
         }
     }
     
+    /**
+     * En este método, se le da la habilidad a Killer Queen de saltar. Cuando se cumplen los condicionales, se le da una nueva posición a Killer hacia arriba, y al concluir el
+     * tiempo dado, regresa a su posición inicial , lo que hace la simulación del salto.
+     */
     private void jump()
     {
         if(jumping == true && timerJumped.millisElapsed() < jumpingTime && getY() > getWorld().getHeight()/2)
@@ -172,6 +177,10 @@ public class KillerQueen extends Actor
             jumping = false;
     }
     
+    /**
+     * Este método verifica con un booleano si la tecla "space" ha sido presionada. Si es así, se ejecuta el método jump, así como el método jumpImages(), donde se asignan las 
+     * imágenes que simulan el movimiento de salto de Killer Queen. De lo contrario se ejecuta el método run(), donde se simula el movimiento de Killer Queen corriendo.
+     */
     private void verifyJump()
     {
         if(Greenfoot.isKeyDown("space"))
@@ -193,6 +202,12 @@ public class KillerQueen extends Actor
         }
     }
     
+   /**
+    * Este método se encarga de asignar las imágenes a Killer Queen para simular el movimiento del jugador muriendo.
+    * Se utiliza la clase SimpleTimer, cada que pasan 200 milisegundos, hay un condicional verifica que la imagen actual del objeto sea igual a la imagen de la lista 
+    * de imágenes declarada en el constructor, iniciando en el índice 0. Si es verdadero entonces actualiza la imagen del índice siguiente y asi sucesivamente hasta llegar 
+    * al índice 8, que es el número total de la lista, y posteriormente comienza en el índice 1 y se inicia el timer nuevamente. Esto se repite siempre.
+    */ 
     private void dieImages()
     {
        if(timerImages.millisElapsed() > 200)
@@ -225,11 +240,17 @@ public class KillerQueen extends Actor
           timerImages.mark();
        }
     }
-    
-    private void die()
-    {
+   
+   /**
+    * Este método se encarga de verificar con un boleeano si el jugador ha perdido todas sus vidas. Si es verdadero, ejecuta el método dieImages(), que simula el movimiento del 
+    * jugador muriendo. Después del tiempo especificado, crea un mundo GameOver y lo asigna.
+    */
+   private void die()
+   {
         if(died)
-            dieImages();
+        { dieImages();
+          records.saveRecords(((Level)getWorld()).getDistance()); 
+        }
         
         if(lifes == 0 && !died)
         {
@@ -242,10 +263,16 @@ public class KillerQueen extends Actor
             GameOver worldGameOver = new GameOver();
             Greenfoot.setWorld(worldGameOver);
         }
-    }
-    
-    private void shootImages()
-    {
+   }
+   
+   /**
+    * Este método se encarga de asignar las imágenes a Killer Queen para simular el movimiento del jugador disparando.
+    * Se utiliza la clase SimpleTimer, cada que pasan 200 milisegundos, hay un condicional verifica que la imagen actual del objeto sea igual a la imagen de la lista 
+    * de imágenes declarada en el constructor, iniciando en el índice 0. Si es verdadero entonces actualiza la imagen del índice siguiente y asi sucesivamente hasta llegar 
+    * al índice 2, que es el número total de la lista, y posteriormente comienza en el índice 1 y se inicia el timer nuevamente. Esto se repite siempre.
+    */
+   private void shootImages()
+   {
        if(timerImages.millisElapsed() > 200)
        {
           for(GreenfootImage img : imgRunning)
@@ -259,70 +286,92 @@ public class KillerQueen extends Actor
           else if (this.getImage() == imgShooting.get(2))
                this.setImage(imgShooting.get(0));   
        }         
-    }
-    
-    private void verifyShoot()
-    {
+   }
+   
+   /**
+    * Este método verifica si la tecla "shift" hasido presionada. Si es así, y el jugador no esta brincando, agrega un objeto Bullet al mundo, lo que simula que esta disparando.
+    * Utiliza un timer el cual verifica que solo se agregue el objeto Bullet después de cierto tiempo, para evitar que el jugador dispare y aparezcan muchas balas al mismo tiempo.
+    */
+   private void verifyShoot()
+   {
         if(Greenfoot.isKeyDown("shift") && !shoot && !jumping)
         {
              shoot = true;
              timerShoot.mark();
              Bullet bullet = new Bullet();
-             getWorld().addObject(bullet, 95, 368);
+             getWorld().addObject(bullet, 95, 363);
         }
         if(timerShoot.millisElapsed() > 300 && shoot)
         {
             shoot = false;
         }
-    }
-    
-    private void verifyAttack()
-    {
-         if(attacked == false)
+   }
+   
+   /**
+    * Este método se encarga de dar un tiempo de recuperación a Killer Queen cuando ha sido atacada.
+    */
+   private void verifyAttack()
+   {
+         
+        if(attacked == false)
          {
-           if(isTouching(Enemies.class) || isTouching(Obstacles.class))
+            
+           if(isTouching(Enemie.class) || isTouching(Obstacles.class))
            {
              lifes -= 1;
-             ((Levels)getWorld()).DrawLifes(lifes); 
+             ((Level)getWorld()).DrawLifes(lifes); 
              attacked = true;
              timerAttacked.mark();
+             
             }
+           
          }
-    }
-    
-    private void verifyTrappedCoins()
-    {
+         
+        if(timerAttacked.millisElapsed() > 2000)
+            attacked = false;
+        
+   }
+   
+   /**
+    * Este método se encarga de llevar la cuenta de monedas que han sido atrapadas. Si Killer Queen toca al objeto Coin, se incrememta la variable trappedCoins, y se actualiza el 
+    * contador de monedas atrapadas.
+    */
+   private void verifyTrappedCoins()
+   {
          if(isTouching(Coin.class))
-            {
-                trappedCoins++;
-                removeTouching(Coin.class);
-                ((Levels)getWorld()).updateCoins();
-                counterCoin.setValue(trappedCoins);
-            } 
-    }
+         {
+            trappedCoins++;
+            removeTouching(Coin.class);
+            ((Level)getWorld()).updateCoins();
+            counterCoin.setValue(trappedCoins);
+         } 
+   }
     
-     /**
-     * Método de acceso a las monedas atrapadas.
-     * @return trappedCoins El número total de monedas atrapadas.
-     */
-    public int getTrappedCoins()
-    {
-        return trappedCoins;
-    }
+   /**
+    * Método de acceso a las monedas atrapadas.
+    * @return trappedCoins El número total de monedas atrapadas.
+   */
+   public int getTrappedCoins()
+   {
+       return trappedCoins;
+   }
     
-    /**
-     * Método de acceso a las vidas de Killer Queen.
-     * @return lifes Vidas de KillerQueen.
-     */
-    public int getLifes()
-    {
-        return lifes;
-    }
+   /**
+    * Método de acceso a las vidas de Killer Queen.
+    * @return lifes Vidas de KillerQueen.
+   */
+   public int getLifes()
+   {
+       return lifes;
+   }
     
-    public void setLifes(int lifes)
-    {
-        this.lifes = lifes;
-    }
+   /**
+     * Método de modificación a las vidas de Killer Queen.
+   */
+   public void setLifes(int lifes)
+   {
+       this.lifes = lifes;
+   }
     
     
 }   

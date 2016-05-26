@@ -1,16 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Cactus here.
+ * Representa la decoración cactus.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Evelyn Gomez) 
+ * @version (Mayo 2016)
  */
 public class Cactus extends Decoration
 {
     /**
-     * Act - do whatever the Cactus wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Ejecuta siempre los mpetodos que manda llamar.
      */
     public void act() 
     {

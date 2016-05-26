@@ -1,9 +1,10 @@
 #BlueJ class context
 comment0.target=Ground
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Ground\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Representa\ los\ pisos\ de\ los\ distintos\ escenarios.\r\n\ @author\ (Evelyn\ Gomez)\ \r\n\ @version\ (Mayo\ 2016)\r\n
 comment1.params=
 comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Ground\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment1.text=\r\nEjecuta\ siempre\ los\ m\u00E9todos\ que\ manda\ llamar.\r\n
 comment2.params=
 comment2.target=void\ setGroundImages()
+comment2.text=\r\n\ Verifica\ en\ que\ mundo\ se\ encuentra\ y\ dependiendo\ en\ cual\ se\ encuentre,\ asigna\ el\ piso\ correspondiente.\r\n
 numComments=3

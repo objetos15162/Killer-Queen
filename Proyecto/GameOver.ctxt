@@ -1,9 +1,10 @@
 #BlueJ class context
 comment0.target=GameOver
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ GameOver\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Esta\ clase\ se\ muestra\ cuando\ se\ ha\ perdido\ el\ juego.\ Tiene\ la\ opci\u00F3n\ de\ reiniciar\ el\ juego,\ o\ bien,\ salir.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
 comment1.target=GameOver()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ GameOver.\r\n\ \r\n
 comment2.params=
 comment2.target=void\ act()
+comment2.text=\r\n\ Comprueba\ si\ el\ boton\ restart\ y\ el\ bot\u00F3n\ exit\ han\ sido\ presionados.\r\n
 numComments=3

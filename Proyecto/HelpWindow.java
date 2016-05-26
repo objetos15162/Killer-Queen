@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class HelpWindow here.
+ * Esta clase se encarga de mostrar la ventana de auyuda del juego.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Evelyn Gómez) 
+ * @version (Mayo 2016)
  */
 public class HelpWindow extends World
 {
@@ -22,6 +22,9 @@ public class HelpWindow extends World
          addObject(home,773,444);
     }
     
+    /**
+     * Comprueba si el botón Home ha sido presionado.
+     */
     public void act()
     {
         if(Greenfoot.mouseClicked(home))

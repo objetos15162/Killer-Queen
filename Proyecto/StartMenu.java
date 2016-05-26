@@ -2,20 +2,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
 import java.awt.*;
 
+
 /**
- * Write a description of class MyWorld here.
+ * Esta clase se encarga de mostrar el menú principal del juego.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Evelyn Gómez) 
+ * @version (Mayo 2016)
  */
 public class StartMenu extends World
 {
     private Play play;
     private Exit exit;
-    private HighScores scores;
     private Help help;
+    private Records records;
     private ArrayList<Button> lBotones;
-   
+    private ArrayList<String> players;
+    private GreenfootSound sound;
+  
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -26,13 +29,12 @@ public class StartMenu extends World
        setBackground("StartMenu.png");
        lBotones = new ArrayList();
        play = new Play();
-       //home = new Home();
        exit = new Exit();
-       scores = new HighScores();
        help = new Help();
+       records = new Records();
        lBotones.add(0, play);
        lBotones.add(1, help);
-       lBotones.add(2, scores);
+       lBotones.add(2, records);
        lBotones.add(3, exit);
        int x,y;
        x = 10;
@@ -43,33 +45,35 @@ public class StartMenu extends World
            addObject(lBotones.get(i),lBotones.get(i).getImage().getWidth()+ x ,getHeight()- lBotones.get(i).getImage().getHeight()- y);
            x += lBotones.get(i).getImage().getWidth() + 10;
        }
-       
+       sound = new GreenfootSound("creep.mp3");
+       sound.play();
     }
     
+    /**
+     * Comprueba que se haga click sobre los botones.
+     */
     public void act()
     {
-        //Comprueba que se haga click sobre los botones
+        
         if(Greenfoot.mouseClicked(play))
         {
-           play.isClicked(); 
+           play.isClicked();
+           sound.stop();
         }
         else if(Greenfoot.mouseClicked(help))
         {
            help.isClicked();
         }
-        else if(Greenfoot.mouseClicked(scores))
+        else if(Greenfoot.mouseClicked(records))
         {
-           // scores.isClicked();
+           records.isClicked();
         }
         else if(Greenfoot.mouseClicked(exit))
         {
-           exit.isClicked();
-           Label label = new Label("Thanks for playing!!",100);
-           label.setFillColor(Color.RED);
-           label.setLineColor(Color.RED);
-           addObject(label,getWidth()/2,getHeight()/2);
            removeObjects(lBotones);
-           setBackground("Winter.png");
+           exit.isClicked();
+           setBackground("exit.png");
+           getBackground().scale(850, 500);
         }
     }
 }

@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 /**
- * Write a description of class CoinNotMovable here.
+ * Representa el contador de monedas.
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -24,14 +24,16 @@ public class CoinNotMovable extends Actor
     }
     
     /**
-     * Act - do whatever the CoinNotMovable wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Ejecuta siempre los métodos que manda llamar.
      */
     public void act() 
     {
         turn();
     }  
     
+    /**
+     * Asigna las imágenes necesarias para simular la rotación de la moneda.
+     */
     private void turn()
     {
         if(timerCoins.millisElapsed() > 200)

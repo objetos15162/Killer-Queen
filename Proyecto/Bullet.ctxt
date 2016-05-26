@@ -1,9 +1,16 @@
 #BlueJ class context
 comment0.target=Bullet
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Bullet\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Representa\ las\ balas\ del\ arma\ de\ Killer\ Queen\r\n\ \r\n\ @author\ (Evelyn\ G\u00F3mez)\ \r\n\ @version\ (Mayo\ 2016)\r\n
 comment1.params=
-comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Bullet\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment1.target=Bullet()
 comment2.params=
-comment2.target=void\ removeEnemies()
-numComments=3
+comment2.target=void\ act()
+comment2.text=\r\n\ Ejecuta\ siempre\ los\ m\u00E9todos\ que\ manda\ llamar.\r\n
+comment3.params=
+comment3.target=void\ removeEnemies()
+comment3.text=\r\n\ Verifica\ si\ esta\ tocando\ la\ clase\ enemigos\ y\ los\ elimina.\r\n
+comment4.params=
+comment4.target=void\ setEnemiesKilled()
+comment5.params=
+comment5.target=int\ getEnemiesKilled()
+numComments=6

@@ -1,17 +1,22 @@
 #BlueJ class context
 comment0.target=Level3
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Level3\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=Level3()
+comment0.text=\r\n\ Es\ el\ tercer\ nivel.\ Aqu\u00ED\ los\ enemigos\ que\ aparecen\ son\ vampiros\ y\ el\ jugador\ tendr\u00E1\ que\ esquivar\ los\ obst\u00E1culos\ que\ son\ los\ cristales\ de\ hielo\r\n\ que\ aparecen\ aleatoriamente\ a\ lo\ largo\ del\ juego.\r\n\ Para\ ganar\ debe\ completar\ los\ 60\ segundos\ con\ al\ menos\ una\ vida.\r\n\ \r\n\ @author\ (Evelyn\ G\u00F3mez)\ \r\n\ @version\ (Mayo\ 2016)\r\n
+comment1.params=distance
+comment1.target=Level3(int)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Level3.\r\n\ \r\n
 comment2.params=
 comment2.target=void\ act()
+comment2.text=\r\n\ Ejecuta\ siempre\ los\ m\u00E9todos\ que\ manda\ llamar.\r\n
 comment3.params=
 comment3.target=void\ updateClock()
+comment3.text=\r\n\ Se\ encarga\ de\ actualizar\ el\ reloj.\r\n
 comment4.params=
 comment4.target=void\ addRandomVampire()
+comment4.text=\r\n\ Agrega\ vampiros\ a\ este\ nivel\ aleatoriamente.\r\n
 comment5.params=
 comment5.target=void\ addDecoration()
+comment5.text=\r\n\ Se\ encarga\ de\ agregar\ decoraciones\ aleatoriamente\ en\ este\ nivel.\r\n
 comment6.params=
 comment6.target=void\ levelComplete()
+comment6.text=\r\n\ Se\ encarga\ de\ verificar\ el\ tiempo\ necesario\ para\ terminar\ el\ nivel,\ crea\ un\ nuevo\ mundo\ Nivel\ 4\ y\ lo\ asigna.\r\n
 numComments=7

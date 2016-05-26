@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Vampire
+comment0.text=\r\n\ Esta\ clase\ representa\ al\ enemigo\ Vampire\ y\ sus\ habilidades\ de\ caminar\ y\ atacar.\r\n\ \r\n\ @author\ (Evelyn\ G\u00F3mez)\ \r\n\ @version\ (Mayo\ 2016)\r\n
+comment1.params=
+comment1.target=Vampire()
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ Ejecuta\ siempre\ los\ m\u00E9todos\ que\ manda\ llamar.\r\n
+comment3.params=
+comment3.target=void\ walk()
+comment3.text=\r\n\ Este\ m\u00E9todo\ se\ encarga\ de\ asignar\ las\ im\u00E1genes\ a\ Vampire\ para\ simular\ el\ movimiento\ del\ enemigo\ caminando.\r\n\ Se\ utiliza\ la\ clase\ SimpleTimer,\ cada\ que\ pasan\ 200\ milisegundos,\ hay\ un\ condicional\ verifica\ que\ la\ imagen\ actual\ del\ objeto\ sea\ igual\ a\ la\ imagen\ de\ la\ lista\ \r\n\ de\ im\u00E1genes\ declarada\ en\ el\ constructor,\ iniciando\ en\ el\ \u00EDndice\ 0.\ Si\ es\ verdadero\ entonces\ actualiza\ la\ imagen\ del\ \u00EDndice\ siguiente\ y\ asi\ sucesivamente\ hasta\ llegar\ \r\n\ al\ \u00EDndice\ 8,\ que\ es\ el\ n\u00FAmero\ total\ de\ la\ lista,\ y\ posteriormente\ comienza\ en\ el\ \u00EDndice\ 1\ y\ se\ inicia\ el\ timer\ nuevamente.\ Esto\ se\ repite\ siempre.\r\n
+comment4.params=
+comment4.target=void\ attackImages()
+comment4.text=\r\n\ Este\ m\u00E9todo\ se\ encarga\ de\ asignar\ las\ im\u00E1genes\ a\ Vampire\ para\ simular\ el\ movimiento\ del\ enemigo\ atacando.\r\n\ Se\ utiliza\ la\ clase\ SimpleTimer,\ cada\ que\ pasan\ 200\ milisegundos,\ hay\ un\ condicional\ verifica\ que\ la\ imagen\ actual\ del\ objeto\ sea\ igual\ a\ la\ imagen\ de\ la\ lista\ \r\n\ de\ im\u00E1genes\ declarada\ en\ el\ constructor,\ iniciando\ en\ el\ \u00EDndice\ 0.\ Si\ es\ verdadero\ entonces\ actualiza\ la\ imagen\ del\ \u00EDndice\ siguiente\ y\ asi\ sucesivamente\ hasta\ llegar\ \r\n\ al\ \u00EDndice\ 12,\ que\ es\ el\ n\u00FAmero\ total\ de\ la\ lista,\ y\ posteriormente\ comienza\ en\ el\ \u00EDndice\ 1\ y\ se\ inicia\ el\ timer\ nuevamente.\ Esto\ se\ repite\ siempre.\r\n
+comment5.params=
+comment5.target=void\ attack()
+comment5.text=\r\n\ Verifica\ si\ el\ objeto\ Killer\ Queen\ est\u00E1\ cerca\ de\ este\ objeto\ y\ llama\ al\ m\u00E9todo\ attackImages(),\ para\ simluar\ el\ movimiento\ de\ ataque.\r\n
+numComments=6

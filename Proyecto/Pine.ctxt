@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Pine
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Pine\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Representa\ la\ decoraci\u00F3n\ pino.\r\n\ \r\n\ @author\ (Evelyn\ Gomez)\ \r\n\ @version\ (Mayo\ 2016)\r\n
 comment1.params=
 comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Pine\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment1.text=\r\n\ \ Ejecuta\ siempre\ los\ mpetodos\ que\ manda\ llamar.\r\n
 numComments=2

@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Home here.
+ * Representa el botón inicio del juego.
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -16,14 +16,16 @@ public class Home extends Button
     }
     
     /**
-     * Act - do whatever the Home wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Ejecuta siempre los métodos que manda llamar.
      */
     public void act() 
     {
         
     }    
     
+    /**
+     * Regresa al menú principal.
+     */
     public void isClicked()
     {
         menu = new StartMenu();
